@@ -4,8 +4,19 @@ export const FEED_QUERY = gql`
     query FeedQuery {
         feed {
             id
+            createdAt
             url
             description
+            postedBy {
+                id
+                name
+            }
+            votes {
+                id
+                user {
+                    id
+                }
+            }
         }
     }
 `

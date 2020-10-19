@@ -2,9 +2,10 @@
     <div>
         <h4 v-if="loading">Loading...</h4>
         <link-item
-            v-for="link in feed"
+            v-for="(link, index) in feed"
             :key ="link.id"
             :link="link"
+            :index="index"
         >
         </link-item>
     </div>
