@@ -11,11 +11,10 @@ export const FEED_QUERY = gql`
 `
 
 export const CREATE_LINK_MUTATION = gql`
-    mutation CreateLinkMutation($url: String!, $description: String!, $postedBy: ID!) {
+    mutation CreateLinkMutation($url: String!, $description: String!) {
         post(
             url: $url,
-            description: $description,
-            postedBy: $postedBy
+            description: $description
         ) {
             id
             url

@@ -47,8 +47,7 @@ export default {
         mutation: CREATE_LINK_MUTATION,
         variables: {
           url: newUrl,
-          description: newDescription,
-          postedBy
+          description: newDescription
         },
         update: (store, { data: { post } }) => {
           const data = store.readQuery({
