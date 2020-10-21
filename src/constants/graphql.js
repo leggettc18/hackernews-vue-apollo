@@ -66,3 +66,22 @@ export const LOGIN_USER_MUTATION = gql`
         }
     }
 `
+
+export const UPVOTE_MUTATION = gql`
+    mutation UpVoteMutation($linkId: ID!) {
+        upVote(linkId: $linkId) {
+            id
+            link {
+                votes {
+                    id
+                    user {
+                        id
+                    }
+                }
+            }
+            user {
+                id
+            }
+        }
+    }
+`

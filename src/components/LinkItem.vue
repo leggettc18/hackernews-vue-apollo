@@ -15,6 +15,8 @@
 
 <script>
 import { timeDifferenceForDate } from '../utils'
+import { FEED_QUERY, UPVOTE_MUTATION } from '../constants/graphql'
+import { USER_ID } from '../constants/settings'
 
 export default {
   name: 'LinkItem',
@@ -32,7 +34,33 @@ export default {
   },
   props: ['link', 'index'],
   methods: {
-    timeDifferenceForDate
+    timeDifferenceForDate,
+    voteForLink () {
+      const userId = localStorage.getItem(USER_ID)
+      const voterIds = this.link.votes.map(vote => vote.user.id)
+      if (voterIds.includes(userId)) {
+        alert(`User (${userId}) already voted for this link.`)
+        return
+      }
+      const linkId = this.link.id
+      this.$apollo.mutate({
+        mutation: UPVOTE_MUTATION,
+        variables: {
+          linkId
+        },
+        update: (store, { data: { upVote } }) => {
+          this.updateStoreAfterVote(store, upVote, linkId)
+        }
+      })
+    },
+    updateStoreAfterVote (store, upVote, linkId) {
+      const data = store.readQuery({
+        query: FEED_QUERY
+      })
+      const votedLink = data.feed.find(link => link.id === linkId)
+      votedLink.votes = upVote.link.votes
+      store.writeQuery({ query: FEED_QUERY, data })
+    }
   }
 }
 </script>
