@@ -5,7 +5,7 @@
       <div v-if="userId" class="ml1 gray f11 upvote" @click="voteForLink()">▲</div>
     </div>
     <div class="ml1">
-      <a href:="link.url" class="link">{{link.description}} ({{link.url}})</a>
+      <a :href="link.url" class="link">{{link.description}} ({{link.url}})</a>
       <div class="f6 lh-copy gray">
         {{link.votes.length}} votes | by {{link.postedBy ? link.postedBy.name : 'Unknown'}} {{timeDifferenceForDate(link.createdAt)}}
       </div>
@@ -74,3 +74,4 @@ export default {
     text-decoration: none;
     color: black;
   }
+</style>
