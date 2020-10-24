@@ -49,7 +49,7 @@ let userId = localStorage.getItem(USER_ID)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  provide: apolloProvider.provide(),
+  apolloProvider,
   router,
   data: {
     userId

@@ -29,10 +29,14 @@ export const CREATE_LINK_MUTATION = gql`
         ) {
             id
             url
+            createdAt
             description
             postedBy {
                 id
                 name
+            }
+            votes{
+                id
             }
         }
     }
