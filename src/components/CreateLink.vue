@@ -53,7 +53,7 @@ export default {
           const data = store.readQuery({
             query: FEED_QUERY
           })
-          data.feed.push(post)
+          data.links.push(post)
           store.writeQuery({ query: FEED_QUERY, data })
         }
       }).then((data) => {

@@ -57,7 +57,7 @@ export default {
       const data = store.readQuery({
         query: FEED_QUERY
       })
-      const votedLink = data.feed.find(link => link.id === linkId)
+      const votedLink = data.links.find(link => link.id === linkId)
       votedLink.votes = upVote.link.votes
       store.writeQuery({ query: FEED_QUERY, data })
     }

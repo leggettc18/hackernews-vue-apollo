@@ -2,7 +2,7 @@
     <div>
         <h4 v-if="loading">Loading...</h4>
         <link-item
-            v-for="(link, index) in feed"
+            v-for="(link, index) in links"
             :key ="link.id"
             :link="link"
             :index="index"
@@ -19,7 +19,7 @@ export default {
   name: 'LinkList',
   data () {
     return {
-      feed: [],
+      links: [],
       loading: 0
     }
   },
@@ -27,7 +27,7 @@ export default {
     LinkItem
   },
   apollo: {
-    feed: {
+    links: {
       query: FEED_QUERY
     }
   }

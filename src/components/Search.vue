@@ -7,7 +7,7 @@
       </label>
     </div>
     <link-item
-      v-for="(link, index) in feed"
+      v-for="(link, index) in links"
       :key="link.id"
       :link="link"
       :index="index"
@@ -24,12 +24,12 @@ export default {
   name: 'Search',
   data () {
     return {
-      feed: [],
+      links: [],
       searchText: ''
     }
   },
   apollo: {
-    feed: {
+    links: {
       query: FEED_SEARCH_QUERY,
       variables () {
         return {

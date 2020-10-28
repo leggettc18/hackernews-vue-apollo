@@ -2,7 +2,7 @@ import gql from 'graphql-tag'
 
 export const FEED_QUERY = gql`
     query FeedQuery {
-        feed {
+        links {
             id
             createdAt
             url
@@ -92,9 +92,7 @@ export const UPVOTE_MUTATION = gql`
 
 export const FEED_SEARCH_QUERY = gql`
     query FeedSearchQuery($searchText: String!) {
-      feed(filter: {
-        OR: [$searchText]
-      }) {
+      links(OR: [$searchText]) {
         id
         url
         description
