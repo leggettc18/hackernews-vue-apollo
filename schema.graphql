@@ -1,0 +1,49 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type AuthPayload {
+  token: String
+  user: User
+}
+
+type Link {
+  createdAt: Time!
+  description: String!
+  id: ID!
+  postedBy: User!
+  url: String!
+  votes: [Vote!]
+}
+
+type Mutation {
+  login(email: String!, password: String!): AuthPayload
+  post(description: String!, url: String!): Link!
+  signup(email: String!, name: String!, password: String!): AuthPayload
+  upVote(linkId: ID!): Vote!
+}
+
+type Query {
+  link(id: ID!): Link!
+  links(AND: [String!], OR: [String!]): [Link!]
+}
+
+type User {
+  email: String!
+  id: ID!
+  links: [Link!]
+  name: String!
+  votes: [Vote!]
+}
+
+type Vote {
+  id: ID!
+  link: Link!
+  user: User!
+}
+
+
+scalar Time
