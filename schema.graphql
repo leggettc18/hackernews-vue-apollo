@@ -3,6 +3,7 @@
 schema {
   query: Query
   mutation: Mutation
+  subscription: Subscription
 }
 
 type AuthPayload {
@@ -10,6 +11,7 @@ type AuthPayload {
   user: User
 }
 
+"Links are the posts of hackernews-clone, containing descriptions, urls, and votes"
 type Link {
   createdAt: Time!
   description: String!
@@ -31,6 +33,11 @@ type Query {
   links(AND: [String!], OR: [String!]): [Link!]
 }
 
+type Subscription {
+  newLink: Link
+}
+
+"Users have all the info for user accounts, such as names, email addresses, links posted, and votes made."
 type User {
   email: String!
   id: ID!
@@ -39,6 +46,7 @@ type User {
   votes: [Vote!]
 }
 
+"Votes describe an upvote that happened on a particular link."
 type Vote {
   id: ID!
   link: Link!

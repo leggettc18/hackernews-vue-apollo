@@ -110,3 +110,24 @@ export const FEED_SEARCH_QUERY = gql`
       }
     }
 `
+
+export const NEW_LINKS_SUBSCRIPTION = gql`
+    subscription {
+      newLink {
+        id
+        url
+        description
+        createdAt
+        postedBy {
+          id
+          name
+        }
+        votes {
+          id
+          user {
+            id
+          }
+        }
+      }
+    }
+`
