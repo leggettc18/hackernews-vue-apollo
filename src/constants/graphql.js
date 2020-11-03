@@ -115,15 +115,48 @@ export const NEW_LINKS_SUBSCRIPTION = gql`
     subscription {
       newLink {
         id
-        url
-        description
-        createdAt
-        postedBy {
+        newLink {
           id
-          name
+          url
+          description
+          createdAt
+          postedBy {
+            id
+            name
+          }
+          votes {
+            id
+            user {
+              id
+            }
+          }
         }
-        votes {
+      }
+    }
+`
+
+export const NEW_VOTES_SUBSCRIPTION = gql`
+    subscription {
+      newVote {
+        id
+        newVote{
           id
+          link {
+            id
+            url
+            description
+            createdAt
+            postedBy {
+              id
+              name
+            }
+            votes {
+              id
+              user {
+                id
+              }
+            }
+          }
           user {
             id
           }

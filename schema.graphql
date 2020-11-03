@@ -28,13 +28,24 @@ type Mutation {
   upVote(linkId: ID!): Vote!
 }
 
+type NewLinkEvent {
+  id: String!
+  newLink: Link!
+}
+
+type NewVoteEvent {
+  id: String!
+  newVote: Vote!
+}
+
 type Query {
   link(id: ID!): Link!
   links(AND: [String!], OR: [String!]): [Link!]
 }
 
 type Subscription {
-  newLink: Link
+  newLink: NewLinkEvent!
+  newVote: NewVoteEvent!
 }
 
 "Users have all the info for user accounts, such as names, email addresses, links posted, and votes made."
