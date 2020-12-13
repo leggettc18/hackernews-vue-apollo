@@ -37,6 +37,9 @@ export const CREATE_LINK_MUTATION = gql`
             }
             votes{
                 id
+                user {
+                  id
+                }
             }
         }
     }
@@ -76,8 +79,25 @@ export const UPVOTE_MUTATION = gql`
         upVote(linkId: $linkId) {
             id
             link {
+                id
                 votes {
                     id
+                    link {
+                      id
+                      url
+                      description
+                      createdAt
+                      postedBy {
+                        id
+                        name
+                      }
+                      votes {
+                        id
+                        user {
+                          id
+                        }
+                      }
+                    }
                     user {
                         id
                     }

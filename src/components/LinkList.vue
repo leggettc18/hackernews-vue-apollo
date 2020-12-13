@@ -53,10 +53,7 @@ export default {
             const votedLinkIndex = previous.links.findIndex(link => link.id === subscriptionData.data.newVote.newVote.link.id)
             const link = subscriptionData.data.newVote.newVote.link
             const newLinks = previous.links.slice()
-            console.log(newLinks)
             newLinks[votedLinkIndex] = link
-            console.log(link)
-            console.log(newLinks)
             return {
               ...previous,
               links: newLinks
