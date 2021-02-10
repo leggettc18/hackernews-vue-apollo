@@ -1,24 +1,27 @@
 import gql from 'graphql-tag'
 
 export const FEED_QUERY = gql`
-    query FeedQuery {
-        links {
+    query FeedQuery($first: Int, $skip: Int, $orderBy: String) {
+        links(first: $first, skip: $skip, orderBy: $orderBy) {
+          id
+          createdAt
+          url
+          description
+          postedBy {
             id
-            createdAt
-            url
-            description
-            postedBy {
-                id
-                name
+            name
+          }
+          votes {
+            id
+            user {
+              id
             }
-            votes {
-                id
-                user {
-                    id
-                }
-            }
+          }
         }
-    }
+        linksMeta {
+            count
+        }
+      }
 `
 
 export const CREATE_LINK_MUTATION = gql`

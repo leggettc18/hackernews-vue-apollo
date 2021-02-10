@@ -11,8 +11,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'LinkList',
-      component: LinkList
+      redirect: '/new/1'
     },
     {
       path: '/create',
@@ -24,8 +23,16 @@ export default new Router({
       component: AppLogin
     },
     {
+      path: '/new/:page',
+      component: LinkList
+    },
+    {
       path: '/search',
       component: Search
+    },
+    {
+      path: '/top',
+      component: LinkList
     }
   ],
   mode: 'history'

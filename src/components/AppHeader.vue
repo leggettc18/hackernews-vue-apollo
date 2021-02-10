@@ -4,6 +4,8 @@
       <div class="fw7 mr1">Hacker News</div>
       <router-link to="/" class="ml1 no-underline black">new</router-link>
       <div class="ml1">|</div>
+      <router-link to="/top" class="ml1 no-underline black">top</router-link>
+      <div class="ml1">|</div>
       <router-link class="ml1 no-underline black" to="/search">search</router-link>
       <div class="flex" v-if="userId">
         <div class="ml1">|</div>

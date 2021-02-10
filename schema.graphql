@@ -21,6 +21,11 @@ type Link {
   votes: [Vote!]
 }
 
+"Meta specifies some metadata about other types."
+type Meta {
+  count: Int!
+}
+
 type Mutation {
   login(email: String!, password: String!): AuthPayload
   post(description: String!, url: String!): Link!
@@ -40,7 +45,8 @@ type NewVoteEvent {
 
 type Query {
   link(id: ID!): Link!
-  links(AND: [String!], OR: [String!]): [Link!]
+  links(AND: [String!], OR: [String!], first: Int, orderBy: String, skip: Int): [Link!]
+  linksMeta: Meta
 }
 
 type Subscription {

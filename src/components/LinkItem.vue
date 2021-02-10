@@ -16,7 +16,7 @@
 <script>
 import { timeDifferenceForDate } from '../utils'
 import { FEED_QUERY, UPVOTE_MUTATION } from '../constants/graphql'
-import { USER_ID } from '../constants/settings'
+import { USER_ID, LINKS_PER_PAGE } from '../constants/settings'
 
 export default {
   name: 'LinkItem',
@@ -32,7 +32,12 @@ export default {
       }
     }
   },
-  props: ['link', 'index'],
+  props: ['link', 'index', 'pageNumber'],
+  data () {
+    return {
+      linksPerPage: LINKS_PER_PAGE
+    }
+  },
   methods: {
     timeDifferenceForDate,
     voteForLink () {
@@ -55,7 +60,12 @@ export default {
     },
     updateStoreAfterVote (store, upVote, linkId) {
       const data = store.readQuery({
-        query: FEED_QUERY
+        query: FEED_QUERY,
+        variables: {
+          first: 5,
+          skip: 0,
+          orderBy: 'createdAt_DESC'
+        }
       })
       const votedLink = data.links.find(link => link.id === linkId)
       votedLink.votes = upVote.link.votes

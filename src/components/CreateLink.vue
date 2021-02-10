@@ -51,10 +51,21 @@ export default {
         },
         update: (store, { data: { post } }) => {
           const data = store.readQuery({
-            query: FEED_QUERY
+            query: FEED_QUERY,
+            variables: {
+              first: 5,
+              skip: 0,
+              orderBy: 'createdAt_DESC'
+            }
           })
           data.links.push(post)
-          store.writeQuery({ query: FEED_QUERY, data })
+          store.writeQuery({ query: FEED_QUERY,
+            variables: {
+              first: 5,
+              skip: 0,
+              orderBy: 'createdAt_DESC'
+            },
+            data })
         }
       }).then((data) => {
         this.$router.push({path: '/'})
